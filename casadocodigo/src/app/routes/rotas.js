@@ -36,7 +36,7 @@ module.exports = (app) => {
         livroDao.adiciona(req.body)
             .then(resp.redirect('/livros'))
             .catch(erro => console.log(erro));
-    })
+    });
 }
 
 
