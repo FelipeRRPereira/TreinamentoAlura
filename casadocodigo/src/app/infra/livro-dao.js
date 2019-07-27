@@ -42,18 +42,23 @@ class LivroDao {
     } 
 
     buscaPorId(id) {
+
         return new Promise((resolve, reject) => {
-            this._db.run(
+            this._db.get(
                 `
-                    SELECT * FROM livros WHERE id = ?
-                `, 
-                [id], 
+                    SELECT *
+                    FROM livros
+                    WHERE id = ?
+                `,
+                [id],
                 (erro, livro) => {
-                        if (erro) return reject('Não foi possível buscar o livro!');
-                        return resolve(livro);
+                    if (erro) {
+                        return reject('Não foi possível encontrar o livro!');
+                    }
+                    return resolve(livro);
                 }
-            )
-        })
+            );
+        });
     }
 
     atualiza(livro) {
