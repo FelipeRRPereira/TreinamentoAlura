@@ -5,6 +5,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
+const { check, validationResult } = require('express-validator');
 
 app.use('/estatico', express.static('src/app/public'));
 app.use(bodyParser.urlencoded({
@@ -22,5 +23,17 @@ app.use(methodOverride(function(req, res) {
 
 const rotas = require('../app/routes/rotas');
 rotas(app);
+
+app.use(function (req, resp, next) {
+    return resp.status(404).marko(
+        require('../app/views/base/erros/404.marko')
+    );    
+});
+
+app.use(function (erro, req, resp, next) {
+    return resp.status(500).marko(
+        require('../app/views/base/erros/500.marko')
+    );
+});
 
 module.exports = app;
