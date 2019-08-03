@@ -4,6 +4,16 @@ const LivroDao = require('../infra/livro-dao');
 const db = require('../../config/database');
 
 class LivroController {
+
+    static rotas() {
+        return {
+            lista: '/livros',
+            cadastro: '/livros/form',
+            edicao: '/livros/form/:id',
+            delecao: '/livros/:id'
+        }
+    }
+
     lista() {
         return function (req, resp) {
             const livroDao = new LivroDao(db);
@@ -57,7 +67,7 @@ class LivroController {
             }
 
             livroDao.adiciona(req.body)
-                .then(resp.redirect('/livros'))
+                .then(resp.redirect(LivroController.rotas().lista))
                 .catch(erro => console.log(erro));
         }
     }
@@ -67,7 +77,7 @@ class LivroController {
             console.log(req.body);
             const livroDao = new LivroDao(db);
             livroDao.atualiza(req.body)
-                .then(resp.redirect('/livros'))
+                .then(resp.redirect(LivroController.rotas().lista))
                 .catch(erro => console.log(erro));
         }
     }
