@@ -1,3 +1,5 @@
+const LivroControlador = require('./livro-controlador');
+
 const templates = require('../views/templates');
 
 class BaseControlador {
@@ -18,15 +20,15 @@ class BaseControlador {
     }
 
     login() {
-
-        return function (req, resp) {
+        
+        return function(req, resp) {
             resp.marko(templates.base.login);
         };
     }
 
     efetuaLogin() {
 
-        return function (req, resp, next) {
+        return function(req, resp, next) {
 
             // Lógica de login.
             const passport = req.passport;
@@ -49,7 +51,6 @@ class BaseControlador {
             })(req, resp, next);
         };
     }
-
 }
 
 module.exports = BaseControlador;

@@ -3,4 +3,4 @@ module.exports = {
     erro500: require('./erros/500.marko'),
     home: require('./home/home.marko'),
     login: require('./login/login.marko')
-};
+}

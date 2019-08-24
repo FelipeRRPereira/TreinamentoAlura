@@ -5,7 +5,7 @@ const Livro = require('../modelos/livro');
 
 module.exports = (app) => {
     const rotasLivro = LivroControlador.rotas();
-    
+
     app.get(rotasLivro.lista, livroControlador.lista());
 
     app.route(rotasLivro.cadastro)
