@@ -44,9 +44,9 @@ module.exports = function(app){
 
   app.post('/pagamentos/pagamento', function(req, res){
 
-    req.assert("forma_de_pagamento",
+    req.assert("pagamento.forma_de_pagamento",
         "Forma de pagamento eh obrigatorio").notEmpty();
-    req.assert("valor",
+    req.assert("pagamento.valor",
       "Valor eh obrigatorio e deve ser um decimal")
         .notEmpty().isFloat();
 
@@ -58,9 +58,9 @@ module.exports = function(app){
       return;
     }
 
-    var pagamento = req.body;
+    var pagamento = req.body["pagamento"];
     console.log('processando uma requisicao de um novo pagamento');
-
+    console.log(pagamento);
     pagamento.status = 'CRIADO';
     pagamento.data = new Date;
 

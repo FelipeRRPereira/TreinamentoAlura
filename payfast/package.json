@@ -18,6 +18,8 @@
     "consign": "^0.1.2",
     "express": "^4.14.0",
     "express-validator": "^2.20.8",
-    "mysql": "^2.11.1"
+    "mysql": "^2.11.1",
+    "restify": "^8.4.0",
+    "restify-clients": "^2.6.7"
   }
 }
